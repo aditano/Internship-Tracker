@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Internship Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Career Pipeline</p>
+          <h1>Track every internship you are considering in one place.</h1>
+          <p class="hero-text">
+            Add opportunities, watch their status move through your pipeline,
+            and keep each company visually distinct with color coding and
+            automatic logos.
+          </p>
+        </div>
+        <div class="hero-stats" id="heroStats"></div>
+      </header>
+
+      <main class="layout">
+        <section class="panel form-panel">
+          <div class="panel-heading">
+            <p class="section-kicker">New Internship</p>
+            <h2>Add an opportunity</h2>
+          </div>
+
+          <form id="internshipForm" class="internship-form">
+            <label>
+              Company
+              <input
+                id="company"
+                name="company"
+                type="text"
+                placeholder="OpenAI"
+                required
+              />
+            </label>
+
+            <label>
+              Role
+              <input
+                id="role"
+                name="role"
+                type="text"
+                placeholder="Software Engineering Intern"
+                required
+              />
+            </label>
+
+            <label>
+              Location
+              <input
+                id="location"
+                name="location"
+                type="text"
+                placeholder="Remote or San Francisco, CA"
+              />
+            </label>
+
+            <label>
+              Company Website or Domain
+              <input
+                id="website"
+                name="website"
+                type="text"
+                placeholder="openai.com"
+              />
+            </label>
+
+            <label>
+              Status
+              <select id="status" name="status">
+                <option value="need to apply">Need to apply</option>
+                <option value="applied">Applied</option>
+                <option value="interviewing">Interviewing</option>
+                <option value="rejected">Rejected</option>
+              </select>
+            </label>
+
+            <label>
+              Notes
+              <textarea
+                id="notes"
+                name="notes"
+                rows="4"
+                placeholder="Referral, deadline, recruiter details, interview prep..."
+              ></textarea>
+            </label>
+
+            <button type="submit" class="primary-button">Add Internship</button>
+          </form>
+        </section>
+
+        <section class="panel board-panel">
+          <div class="panel-heading board-heading">
+            <div>
+              <p class="section-kicker">Opportunity Board</p>
+              <h2>Your internship pipeline</h2>
+            </div>
+            <button id="seedButton" class="ghost-button" type="button">
+              Load sample internships
+            </button>
+          </div>
+
+          <div class="status-strip" id="statusStrip"></div>
+          <div class="card-grid" id="internshipList"></div>
+        </section>
+      </main>
+    </div>
+
+    <template id="internshipCardTemplate">
+      <article class="internship-card">
+        <div class="card-accent"></div>
+        <div class="card-content">
+          <div class="card-header">
+            <div class="logo-shell">
+              <img class="company-logo" alt="" />
+              <div class="logo-fallback" aria-hidden="true"></div>
+            </div>
+            <div>
+              <p class="company-name"></p>
+              <h3 class="role-name"></h3>
+            </div>
+          </div>
+
+          <div class="meta-row">
+            <span class="meta-pill location-pill"></span>
+            <span class="meta-pill website-pill"></span>
+          </div>
+
+          <p class="notes-copy"></p>
+
+          <div class="card-footer">
+            <label class="status-control">
+              Status
+              <select class="status-select">
+                <option value="need to apply">Need to apply</option>
+                <option value="applied">Applied</option>
+                <option value="interviewing">Interviewing</option>
+                <option value="rejected">Rejected</option>
+              </select>
+            </label>
+            <button class="delete-button" type="button">Remove</button>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
