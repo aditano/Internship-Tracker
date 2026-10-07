@@ -42,3 +42,15 @@ The board stays in that browser. Clearing site data removes it.
 - [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) from Google Fonts
 - Browser `localStorage`
 - GitHub Actions and GitHub Pages for deployment
+
+## License
+
+Copyright (C) 2026 Anthony DiTano.
+
+Internship Tracker is free software. You can redistribute it and modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. The full text is in [LICENSE](LICENSE).
+
+These third-party pieces keep their own licenses:
+
+- [Space Grotesk](https://github.com/floriankarsten/space-grotesk) is loaded from Google Fonts under the [SIL Open Font License 1.1](https://scripts.sil.org/OFL). Copyright 2020 The Space Grotesk Project Authors.
+- [Instrument Serif](https://github.com/Instrument/instrument-serif) is loaded from Google Fonts under the SIL Open Font License 1.1. Copyright 2022 The Instrument Serif Project Authors.
+- Company logos are fetched at runtime from Clearbit and Google. Those marks stay with their owners.
