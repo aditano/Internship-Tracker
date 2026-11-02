@@ -280,12 +280,15 @@ textarea {
 }
 
 .company-logo {
+  position: relative;
+  z-index: 1;
   object-fit: cover;
 }
 
 .logo-fallback {
   position: absolute;
   inset: 0;
+  z-index: 0;
   display: grid;
   place-items: center;
   font-weight: 700;
