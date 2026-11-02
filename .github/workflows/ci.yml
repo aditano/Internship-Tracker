@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify required site files
+        run: |
+          test -f index.html
+          test -f app.js
+          test -f styles.css
+          test -f README.md
+
+      - name: Syntax-check JavaScript
+        run: node --check app.js
