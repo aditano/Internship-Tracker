@@ -210,6 +210,8 @@ function renderCards() {
     website.textContent = internship.website || "Domain auto-guessed";
     notes.textContent = internship.notes || "No notes yet. Add deadline, contact details, or interview prep.";
     select.value = internship.status;
+    select.setAttribute("aria-label", `Status for ${internship.company}`);
+    deleteButton.setAttribute("aria-label", `Remove ${internship.company}`);
     fallback.textContent = fallbackText || "?";
     fallback.style.background = STATUS_CONFIG[internship.status].color;
 
