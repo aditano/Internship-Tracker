@@ -1,5 +1,17 @@
 const STORAGE_KEY = "internship-tracker-board";
 
+function createId() {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+    try {
+      return crypto.randomUUID();
+    } catch {
+      // Non-secure origins can expose randomUUID but throw when called.
+    }
+  }
+
+  return `id-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 11)}`;
+}
+
 const STATUS_CONFIG = {
   "need to apply": {
     label: "Need to apply",
@@ -21,7 +33,7 @@ const STATUS_CONFIG = {
 
 const SAMPLE_INTERNSHIPS = [
   {
-    id: crypto.randomUUID(),
+    id: createId(),
     company: "OpenAI",
     role: "Software Engineering Intern",
     location: "San Francisco, CA",
@@ -30,7 +42,7 @@ const SAMPLE_INTERNSHIPS = [
     notes: "Focus on systems design prep and recent API platform work.",
   },
   {
-    id: crypto.randomUUID(),
+    id: createId(),
     company: "Figma",
     role: "Product Design Intern",
     location: "New York, NY",
@@ -39,7 +51,7 @@ const SAMPLE_INTERNSHIPS = [
     notes: "Polish portfolio case study before submitting.",
   },
   {
-    id: crypto.randomUUID(),
+    id: createId(),
     company: "Stripe",
     role: "Data Science Intern",
     location: "Remote",
@@ -70,7 +82,7 @@ form.addEventListener("submit", (event) => {
   }
 
   const internship = {
-    id: crypto.randomUUID(),
+    id: createId(),
     company,
     role,
     location: formData.get("location").trim(),
@@ -91,7 +103,7 @@ seedButton.addEventListener("click", () => {
     return;
   }
 
-  internships = SAMPLE_INTERNSHIPS.map((item) => ({ ...item, id: crypto.randomUUID() }));
+  internships = SAMPLE_INTERNSHIPS.map((item) => ({ ...item, id: createId() }));
   persistInternships();
   render();
 });
@@ -198,6 +210,8 @@ function renderCards() {
     website.textContent = internship.website || "Domain auto-guessed";
     notes.textContent = internship.notes || "No notes yet. Add deadline, contact details, or interview prep.";
     select.value = internship.status;
+    select.setAttribute("aria-label", `Status for ${internship.company}`);
+    deleteButton.setAttribute("aria-label", `Remove ${internship.company}`);
     fallback.textContent = fallbackText || "?";
     fallback.style.background = STATUS_CONFIG[internship.status].color;
 
